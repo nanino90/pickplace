@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <iostream>
+
 #include "gantry.h"
 #include "reader.h"
 #include "enclosure_design.h"
@@ -19,6 +20,9 @@ int main (int argc, char** argv)
 
 	enclosureDesign(scene,450);
 
+Gantry* gantry = new Gantry();
+gantry->setPos(scene.height()/2,scene.width()/2);	
+scene.addItem(gantry);
 	QGraphicsView view(&scene);
 	view.setRenderHint(QPainter::Antialiasing);
 	view.setBackgroundBrush(Qt::gray);

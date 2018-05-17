@@ -331,10 +331,12 @@ compiler_clean:
 ####### Compile
 
 main.o: main.cpp gantry.h \
-		reader.h
+		reader.h \
+		enclosure_design.h \
+		wall.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
-gantry.o: gantry.cpp 
+gantry.o: gantry.cpp gantry.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gantry.o gantry.cpp
 
 wall.o: wall.cpp wall.h
