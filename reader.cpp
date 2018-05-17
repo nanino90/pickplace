@@ -6,8 +6,4 @@
 
 void Reader::run() 
 {
-	for (;;) 
-	{
-		fprintf(stdout, "%d\n", 3);        
-	}
 }

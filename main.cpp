@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <iostream>
 #include "gantry.h"
-#include "wall.h"
 #include "reader.h"
+#include "enclosure_design.h"
 
 int main (int argc, char** argv)
 {
@@ -17,10 +17,7 @@ int main (int argc, char** argv)
 	Reader reader;
 	reader.start();
 
-	Wall* wall= new Wall();
-	wall->setPos(250,250);
-
-	scene.addItem(wall);
+	enclosureDesign(scene,450);
 
 	QGraphicsView view(&scene);
 	view.setRenderHint(QPainter::Antialiasing);
@@ -29,6 +26,10 @@ int main (int argc, char** argv)
 	view.setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
 	view.setWindowTitle("PickPlace");
 	view.show();
+
+	QTimer timer;
+	QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
+	timer.start(100);
 
 	app.exec();
 	std::cout<<"heee"<<std::endl;

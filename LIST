@@ -3,7 +3,8 @@
 
 Create threads	|X|
 Create QtScene	|X|
-Create walls	|/|
+Create walls	|X|
+Comunicate	| |
 Move gantry	| |
 Reader		| |
 		| |

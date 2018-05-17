@@ -51,11 +51,13 @@ OBJECTS_DIR   = ./
 SOURCES       = main.cpp \
 		gantry.cpp \
 		wall.cpp \
-		reader.cpp 
+		reader.cpp \
+		enclosure_design.cpp 
 OBJECTS       = main.o \
 		gantry.o \
 		wall.o \
-		reader.o
+		reader.o \
+		enclosure_design.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -115,10 +117,12 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		pickplace.pro gantry.h \
 		wall.h \
-		reader.h main.cpp \
+		reader.h \
+		enclosure_design.h main.cpp \
 		gantry.cpp \
 		wall.cpp \
-		reader.cpp
+		reader.cpp \
+		enclosure_design.cpp
 QMAKE_TARGET  = pickplace
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = pickplace
@@ -286,8 +290,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents gantry.h wall.h reader.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp gantry.cpp wall.cpp reader.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents gantry.h wall.h reader.h enclosure_design.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp gantry.cpp wall.cpp reader.cpp enclosure_design.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -327,18 +331,21 @@ compiler_clean:
 ####### Compile
 
 main.o: main.cpp gantry.h \
-		wall.h \
 		reader.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 gantry.o: gantry.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gantry.o gantry.cpp
 
-wall.o: wall.cpp 
+wall.o: wall.cpp wall.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wall.o wall.cpp
 
-reader.o: reader.cpp 
+reader.o: reader.cpp reader.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reader.o reader.cpp
+
+enclosure_design.o: enclosure_design.cpp enclosure_design.h \
+		wall.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o enclosure_design.o enclosure_design.cpp
 
 ####### Install
 
