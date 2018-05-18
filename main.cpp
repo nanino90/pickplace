@@ -20,9 +20,10 @@ int main (int argc, char** argv)
 
 	enclosureDesign(scene,450);
 
-Gantry* gantry = new Gantry();
-gantry->setPos(scene.height()/2,scene.width()/2);	
-scene.addItem(gantry);
+	Gantry* gantry = new Gantry();
+	gantry->setPos(scene.height()/2,scene.width()/2);	
+	scene.addItem(gantry);
+
 	QGraphicsView view(&scene);
 	view.setRenderHint(QPainter::Antialiasing);
 	view.setBackgroundBrush(Qt::gray);
@@ -33,9 +34,10 @@ scene.addItem(gantry);
 
 	QTimer timer;
 	QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
+	QObject::connect(&timer, SIGNAL(timeout()), &reader, SLOT(collision()));
 	timer.start(100);
 
 	app.exec();
 	std::cout<<"heee"<<std::endl;
-return 0;
+	return 0;
 }

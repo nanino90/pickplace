@@ -22,17 +22,19 @@ QPainterPath Gantry::shape() const
 }
 
 void Gantry::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
-				QWidget* widget)
+		QWidget* widget)
 {
-(void)option;
-(void)widget;
+	(void)option;
+	(void)widget;
 
-painter->setBrush(color);
-painter->drawRect(0,0,width,length);
+	painter->setBrush(color);
+	painter->drawRect(0,0,width,length);
 
 } 
 
-//void Gantry::advance(int step)
-//{
-//	(void) step;
-//}
+void Gantry::advance(int step)
+{
+	(void) step;
+	setTransformOriginPoint(0,0);
+	setPos(mapToParent(1,0));
+}

@@ -7,3 +7,8 @@
 void Reader::run() 
 {
 }
+
+void Reader::collision()
+{
+	std::cout<<"Collision"<<std::endl;
+}

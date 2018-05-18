@@ -16,7 +16,7 @@ class Gantry : public QGraphicsItem
 				QWidget* widget) override;
 
 	protected:
-		//void advance(int step) override;	
+		void advance(int step) override;	
 
 	private:
 		QColor color;

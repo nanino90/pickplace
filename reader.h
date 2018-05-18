@@ -9,4 +9,7 @@ class Reader: public QThread
 {
 public:
     void run() override;
+
+protected slots:
+	void collision();
 };
