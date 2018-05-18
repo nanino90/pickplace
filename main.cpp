@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <iostream>
 
+#include "events.h"
 #include "gantry.h"
 #include "reader.h"
 #include "enclosure_design.h"
@@ -32,9 +33,12 @@ int main (int argc, char** argv)
 	view.setWindowTitle("PickPlace");
 	view.show();
 
+	events evt;
+
 	QTimer timer;
 	QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
-	QObject::connect(&timer, SIGNAL(timeout()), &reader, SLOT(collision()));
+	QObject::connect(&timer, SIGNAL(timeout()), &evt, SLOT(collision()));
+	//QObject::connect(&reader, SIGNAL(setDestination()), &gantry, SLOT(getDestination()));
 	timer.start(100);
 
 	app.exec();

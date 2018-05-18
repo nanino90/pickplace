@@ -4,7 +4,8 @@ qreal width	=40;
 qreal length	=40;
 
 Gantry::Gantry() :
-	color(Qt::yellow)
+	color(Qt::yellow),
+	destination(40,40)
 {
 
 }
@@ -35,6 +36,18 @@ void Gantry::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
 void Gantry::advance(int step)
 {
 	(void) step;
+	QPoint actual(x(),y());
+
+	if(actual.x()>destination.x())
+		actual.rx()--;
+	if(actual.y()>destination.y())
+		actual.ry()--;
+	if(actual.x()<destination.x())
+		actual.rx()++;
+	if(actual.y()<destination.y())
+		actual.ry()++;
+
 	setTransformOriginPoint(0,0);
-	setPos(mapToParent(1,0));
+	setPos(actual);
 }
+

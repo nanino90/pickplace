@@ -20,8 +20,7 @@ class Gantry : public QGraphicsItem
 
 	private:
 		QColor color;
-
-
+		QPoint destination;
 };
 
 
