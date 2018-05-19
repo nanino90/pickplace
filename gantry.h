@@ -17,7 +17,7 @@ class Gantry : public QGraphicsObject
 		void paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
 				QWidget* widget) override;
 	public slots:
-		void setDestination(int x, int  y);
+		void putDestination(qreal x, qreal y);
 
 	protected:
 		void advance(int step) override;	
@@ -27,6 +27,7 @@ class Gantry : public QGraphicsObject
 	private:
 		QColor color;
 		QPoint destination;
+		
 };
 
 

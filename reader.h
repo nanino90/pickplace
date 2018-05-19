@@ -5,16 +5,18 @@
 #include <stdio.h>
 #include <iostream>
 
+#include "manager.h"
+
 
 
 class Reader: public QThread
 {
-public:
+	public:
 
-	Reader(QObject* event);
+		Reader(Manager* event);
 
-    void run() override;
+		void run() override;
 
-private:
-	QObject* evt;
+	private:
+		Manager* evt;
 };

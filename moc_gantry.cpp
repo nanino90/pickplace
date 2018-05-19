@@ -32,12 +32,12 @@ static const qt_meta_stringdata_Gantry_t qt_meta_stringdata_Gantry = {
 QT_MOC_LITERAL(0, 0, 6), // "Gantry"
 QT_MOC_LITERAL(1, 7, 6), // "tamper"
 QT_MOC_LITERAL(2, 14, 0), // ""
-QT_MOC_LITERAL(3, 15, 14), // "setDestination"
+QT_MOC_LITERAL(3, 15, 14), // "putDestination"
 QT_MOC_LITERAL(4, 30, 1), // "x"
 QT_MOC_LITERAL(5, 32, 1) // "y"
 
     },
-    "Gantry\0tamper\0\0setDestination\0x\0y"
+    "Gantry\0tamper\0\0putDestination\0x\0y"
 };
 #undef QT_MOC_LITERAL
 
@@ -64,7 +64,7 @@ static const uint qt_meta_data_Gantry[] = {
     QMetaType::Void,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    4,    5,
+    QMetaType::Void, QMetaType::QReal, QMetaType::QReal,    4,    5,
 
        0        // eod
 };
@@ -76,7 +76,7 @@ void Gantry::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->tamper(); break;
-        case 1: _t->setDestination((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 1: _t->putDestination((*reinterpret_cast< qreal(*)>(_a[1])),(*reinterpret_cast< qreal(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

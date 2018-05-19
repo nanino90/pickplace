@@ -8,12 +8,13 @@
 #include "events.h"
 
 
-Reader::Reader(QObject* event):
+Reader::Reader(Manager* event):
 	evt(event)
 {
 }
 
 void Reader::run() 
 {
+	evt->printMenu();
 }
 

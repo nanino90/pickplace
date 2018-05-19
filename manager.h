@@ -3,6 +3,7 @@
 
 #include <QFile>
 #include <QObject>
+#include <QTextStream>
 
 class Manager : public QObject
 {
@@ -12,10 +13,17 @@ class Manager : public QObject
 		Manager();
 		~Manager();
 
-		void loadFile(QString filename);
+		void loadFile();
+		void printMenu();
 
 	private:
-		QFile file;
+		QString placement;
+		bool fileOpen;		
+
+	public slots:
+
+	signals:
+		void setDestination(qreal x, qreal y);
 
 };
 

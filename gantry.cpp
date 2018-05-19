@@ -1,4 +1,5 @@
 #include "gantry.h"
+#include <iostream>
 
 qreal width	=40;
 qreal length	=40;
@@ -45,6 +46,11 @@ void Gantry::advance(int step)
 	(void) step;
 	QPoint actual(x(),y());
 
+	if(actual==destination)
+{
+		return;
+}
+
 	if(actual.x()>destination.x())
 		actual.rx()--;
 	if(actual.y()>destination.y())
@@ -59,7 +65,7 @@ void Gantry::advance(int step)
 	setPos(actual);
 }
 
-void Gantry::setDestination(int x, int y)
+void Gantry::putDestination(qreal x, qreal y)
 {
 	destination.setX(x);
 	destination.setY(y);
