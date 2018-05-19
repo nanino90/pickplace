@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'events.h'
+** Meta object code from reading C++ file 'gantry.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "events.h"
+#include "gantry.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'events.h' doesn't include <QObject>."
+#error "The header file 'gantry.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -18,30 +18,30 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-struct qt_meta_stringdata_events_t {
+struct qt_meta_stringdata_Gantry_t {
     QByteArrayData data[6];
-    char stringdata0[37];
+    char stringdata0[34];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_events_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_Gantry_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_events_t qt_meta_stringdata_events = {
+static const qt_meta_stringdata_Gantry_t qt_meta_stringdata_Gantry = {
     {
-QT_MOC_LITERAL(0, 0, 6), // "events"
-QT_MOC_LITERAL(1, 7, 14), // "setDestination"
-QT_MOC_LITERAL(2, 22, 0), // ""
-QT_MOC_LITERAL(3, 23, 1), // "x"
-QT_MOC_LITERAL(4, 25, 1), // "y"
-QT_MOC_LITERAL(5, 27, 9) // "collision"
+QT_MOC_LITERAL(0, 0, 6), // "Gantry"
+QT_MOC_LITERAL(1, 7, 6), // "tamper"
+QT_MOC_LITERAL(2, 14, 0), // ""
+QT_MOC_LITERAL(3, 15, 14), // "setDestination"
+QT_MOC_LITERAL(4, 30, 1), // "x"
+QT_MOC_LITERAL(5, 32, 1) // "y"
 
     },
-    "events\0setDestination\0\0x\0y\0collision"
+    "Gantry\0tamper\0\0setDestination\0x\0y"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_events[] = {
+static const uint qt_meta_data_Gantry[] = {
 
  // content:
        7,       // revision
@@ -55,64 +55,64 @@ static const uint qt_meta_data_events[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   24,    2, 0x06 /* Public */,
+       1,    0,   24,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   29,    2, 0x0a /* Public */,
+       3,    2,   25,    2, 0x0a /* Public */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QReal, QMetaType::QReal,    3,    4,
+    QMetaType::Void,
 
  // slots: parameters
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    4,    5,
 
        0        // eod
 };
 
-void events::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void Gantry::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        events *_t = static_cast<events *>(_o);
+        Gantry *_t = static_cast<Gantry *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->setDestination((*reinterpret_cast< qreal(*)>(_a[1])),(*reinterpret_cast< qreal(*)>(_a[2]))); break;
-        case 1: _t->collision(); break;
+        case 0: _t->tamper(); break;
+        case 1: _t->setDestination((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (events::*_t)(qreal , qreal );
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&events::setDestination)) {
+            typedef void (Gantry::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Gantry::tamper)) {
                 *result = 0;
             }
         }
     }
 }
 
-const QMetaObject events::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_events.data,
-      qt_meta_data_events,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+const QMetaObject Gantry::staticMetaObject = {
+    { &QGraphicsObject::staticMetaObject, qt_meta_stringdata_Gantry.data,
+      qt_meta_data_Gantry,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
-const QMetaObject *events::metaObject() const
+const QMetaObject *Gantry::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *events::qt_metacast(const char *_clname)
+void *Gantry::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_events.stringdata0))
-        return static_cast<void*>(const_cast< events*>(this));
-    return QObject::qt_metacast(_clname);
+    if (!strcmp(_clname, qt_meta_stringdata_Gantry.stringdata0))
+        return static_cast<void*>(const_cast< Gantry*>(this));
+    return QGraphicsObject::qt_metacast(_clname);
 }
 
-int events::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int Gantry::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QObject::qt_metacall(_c, _id, _a);
+    _id = QGraphicsObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
@@ -128,9 +128,8 @@ int events::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void events::setDestination(qreal _t1, qreal _t2)
+void Gantry::tamper()
 {
-    void *_a[] = { Q_NULLPTR, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

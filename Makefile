@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = pickplace.run1.0.0
-DISTDIR = /home/nanino/pickplace/.tmp/pickplace.run1.0.0
+DISTDIR = /home/nanino/projects/pickplace/.tmp/pickplace.run1.0.0
 LINK          = g++
 LFLAGS        = -m64 -Wl,-O1
 LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -53,14 +53,20 @@ SOURCES       = main.cpp \
 		wall.cpp \
 		events.cpp \
 		reader.cpp \
-		enclosure_design.cpp moc_events.cpp
+		manager.cpp \
+		enclosure_design.cpp moc_gantry.cpp \
+		moc_events.cpp \
+		moc_manager.cpp
 OBJECTS       = main.o \
 		gantry.o \
 		wall.o \
 		events.o \
 		reader.o \
+		manager.o \
 		enclosure_design.o \
-		moc_events.o
+		moc_gantry.o \
+		moc_events.o \
+		moc_manager.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -122,11 +128,13 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		wall.h \
 		events.h \
 		reader.h \
+		manager.h \
 		enclosure_design.h main.cpp \
 		gantry.cpp \
 		wall.cpp \
 		events.cpp \
 		reader.cpp \
+		manager.cpp \
 		enclosure_design.cpp
 QMAKE_TARGET  = pickplace.run
 DESTDIR       = #avoid trailing-slash linebreak
@@ -295,8 +303,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents gantry.h wall.h events.h reader.h enclosure_design.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp gantry.cpp wall.cpp events.cpp reader.cpp enclosure_design.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents gantry.h wall.h events.h reader.h manager.h enclosure_design.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp gantry.cpp wall.cpp events.cpp reader.cpp manager.cpp enclosure_design.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -319,11 +327,17 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_events.cpp
+compiler_moc_header_make_all: moc_gantry.cpp moc_events.cpp moc_manager.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_events.cpp
+	-$(DEL_FILE) moc_gantry.cpp moc_events.cpp moc_manager.cpp
+moc_gantry.cpp: gantry.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/nanino/projects/pickplace -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include gantry.h -o moc_gantry.cpp
+
 moc_events.cpp: events.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/nanino/pickplace -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include events.h -o moc_events.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/nanino/projects/pickplace -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include events.h -o moc_events.cpp
+
+moc_manager.cpp: manager.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/nanino/projects/pickplace -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include manager.h -o moc_manager.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -342,6 +356,7 @@ compiler_clean: compiler_moc_header_clean
 main.o: main.cpp events.h \
 		gantry.h \
 		reader.h \
+		manager.h \
 		enclosure_design.h \
 		wall.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
@@ -359,12 +374,21 @@ reader.o: reader.cpp reader.h \
 		events.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reader.o reader.cpp
 
+manager.o: manager.cpp manager.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o manager.o manager.cpp
+
 enclosure_design.o: enclosure_design.cpp enclosure_design.h \
 		wall.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o enclosure_design.o enclosure_design.cpp
 
+moc_gantry.o: moc_gantry.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_gantry.o moc_gantry.cpp
+
 moc_events.o: moc_events.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_events.o moc_events.cpp
+
+moc_manager.o: moc_manager.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_manager.o moc_manager.cpp
 
 ####### Install
 

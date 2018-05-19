@@ -12,6 +12,7 @@ HEADERS += \
 	wall.h \
 	events.h \
 	reader.h \
+	manager.h \
 	enclosure_design.h
 
 SOURCES += \
@@ -20,6 +21,7 @@ SOURCES += \
 	wall.cpp \
 	events.cpp \
 	reader.cpp \
+	manager.cpp \
 	enclosure_design.cpp
 
 TARGET = pickplace.run

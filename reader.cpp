@@ -8,8 +8,12 @@
 #include "events.h"
 
 
+Reader::Reader(QObject* event):
+	evt(event)
+{
+}
+
 void Reader::run() 
 {
-	events evt;
 }
 

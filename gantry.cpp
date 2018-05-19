@@ -3,11 +3,12 @@
 qreal width	=40;
 qreal length	=40;
 
-Gantry::Gantry() :
-	color(Qt::yellow),
-	destination(40,40)
+Gantry::Gantry(qreal x, qreal y) :
+	color(Qt::yellow)
 {
-
+	setPos(x,y);	
+	destination.setX(x);
+	destination.setY(y);
 }
 
 QRectF Gantry::boundingRect() const
@@ -28,7 +29,13 @@ void Gantry::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
 	(void)option;
 	(void)widget;
 
+	if(scene()->collidingItems(this).isEmpty())
 	painter->setBrush(color);
+else	
+{
+	emit tamper();	
+	painter->setBrush(Qt::black);
+	}
 	painter->drawRect(0,0,width,length);
 
 } 
@@ -42,12 +49,19 @@ void Gantry::advance(int step)
 		actual.rx()--;
 	if(actual.y()>destination.y())
 		actual.ry()--;
+		actual.ry()--;
 	if(actual.x()<destination.x())
-		actual.rx()++;
+	      actual.rx()++;
 	if(actual.y()<destination.y())
 		actual.ry()++;
 
 	setTransformOriginPoint(0,0);
 	setPos(actual);
+}
+
+void Gantry::setDestination(int x, int y)
+{
+	destination.setX(x);
+	destination.setY(y);
 }
 

@@ -13,6 +13,9 @@ public:
 public slots:
 	void collision();
 
+signals:
+	void setDestination(qreal x, qreal y);
+
 };
 
 

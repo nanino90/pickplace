@@ -10,5 +10,11 @@
 class Reader: public QThread
 {
 public:
+
+	Reader(QObject* event);
+
     void run() override;
+
+private:
+	QObject* evt;
 };
