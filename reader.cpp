@@ -15,6 +15,10 @@ Reader::Reader(Manager* event):
 
 void Reader::run() 
 {
+	for(;;)
+{
 	evt->printMenu();
+
+}
 }
 

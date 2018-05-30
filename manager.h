@@ -19,11 +19,14 @@ class Manager : public QObject
 	private:
 		QString placement;
 		bool fileOpen;		
+		std::vector<QString> messages;
 
 	public slots:
+		void collision();
 
 	signals:
 		void setDestination(qreal x, qreal y);
+
 
 };
 

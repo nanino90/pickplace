@@ -1,8 +1,16 @@
 #include "manager.h"
 #include <iostream>
+
+void clr ()
+{
+	int val=system("clear");
+	(void)val;
+	return;
+}
+
 Manager::Manager()
 {
-	system("clear");
+clr();	
 	std::cout<<"Welcome to QPick&Place"<<std::endl;
 	std::cout<<std::endl;
 
@@ -37,8 +45,13 @@ void Manager::printMenu()
 	}
 
 
+	std::cout<<"3.Go to"<<std::endl;
 	std::cout<<"0.Close program"<<std::endl;
 	std::cout<<". . . . . . . . . . . . . . ."<<std::endl;
+
+	for(QString i : messages)
+	std::cout<<i.toStdString()<<std::endl;
+	
 
 	int selection;
 	std::cin>>selection;
@@ -46,19 +59,29 @@ void Manager::printMenu()
 	switch(selection)
 	{
 		case 0:
-			std::exit;
+			exit(0);
 			break;
 		case 1:
-			emit setDestination(20,35);
+			emit setDestination(2000,350);
 			loadFile();
 			break;
 		case 2:
 			emit setDestination(20,35);
 			break;
+		case 3:
+			emit setDestination(200,200);
+			break;
 		default:
 			break;
 
 	}
-	system("clear");
+	clr();	
+}
 
+void Manager::collision()
+{
+	QString collision_message("Collision!");
+	messages.push_back(collision_message);		
+	clr();	
+	printMenu();	
 }

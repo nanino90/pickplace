@@ -38,6 +38,7 @@ int main (int argc, char** argv)
 	QTimer timer;
 	QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
 	QObject::connect(manager, SIGNAL(setDestination(qreal, qreal)), gantry, SLOT(putDestination(qreal, qreal)));
+	QObject::connect(gantry, SIGNAL(tamper()), manager, SLOT(collision()));
 	timer.start(100);
 
 	app.exec();

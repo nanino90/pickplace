@@ -34,7 +34,7 @@ void Gantry::paint(QPainter* painter, const QStyleOptionGraphicsItem* option,
 	painter->setBrush(color);
 else	
 {
-	emit tamper();	
+	//emit tamper();	
 	painter->setBrush(Qt::black);
 	}
 	painter->drawRect(0,0,width,length);
